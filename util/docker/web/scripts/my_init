@@ -166,7 +166,7 @@ def waitpid_reap_other_children(pid):
                 # Save status for later.
                 terminated_child_processes[this_pid] = status
         except OSError as e:
-            if e.errno == errno.ECHILD or e.errno == errno.ESRCH:
+            if e.errno in [errno.ECHILD, errno.ESRCH]:
                 return None
             else:
                 raise
